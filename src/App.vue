@@ -1,10 +1,12 @@
 <template>
 	<div id="app">
-		<div class="nav">
-			<router-link v-for="item in navList" class="button" :to="item.to" :key="item.id">{{item.name}}</router-link>
+		<div class="nav" :class="curPage==3?'my-active-left':null">
+			<router-link v-for="(item,index) in navList" class="button" :to="item.to" :key="item.id" @click.native="changePage(index)" :class="curPage==index?'my-active':null">{{item.name}}</router-link>
 		</div>
+		<keep-alive>
+			<router-view v-if="$route.meta.keepAlive"></router-view>
+		</keep-alive>
 
-		<router-view/>
 	</div>
 </template>
 
@@ -13,22 +15,38 @@
 		name: 'App',
 		data() {
 			return {
+				curPage: 0,
 				navList: [{
-					id:0,
-					name: "衣联网器大数据",
-					to: {path: '/'},
-					checked:true
+					id: 0,
+					name: "智慧家电大数据",
+					to: {
+						path: '/'
+					},
 				}, {
-					id:1,
+					id: 1,
 					name: "智慧门店大数据",
-					to: {path:'second'},
-					checked:false
-				},{
-					id:2,
-					name:"智慧家庭大数据 ",
-					to: {path:'third'},
-					checked:false
+					to: {
+						path: 'second'
+					},
+				}, {
+					id: 2,
+					name: "智慧服装大数据 ",
+					to: {
+						path: 'third'
+					},
+				}, {
+					id: 3,
+					name: "衣联定制大数据 ",
+					to: {
+						path: 'forth'
+					},
 				}]
+			}
+		},
+		methods: {
+			changePage: function(index) {
+				this.curPage = index
+				console.log(this.curPage)
 			}
 		},
 		mounted() {
@@ -58,6 +76,11 @@
 </script>
 
 <style>
+	@font-face {
+		font-family: 'NexaBold';
+		src: url(../static/fonts/NexaBold.otf);
+	}
+	
 	html,
 	body {
 		width: 100%;
@@ -79,7 +102,8 @@
 		-webkit-margin-before: 0em;
 		-webkit-margin-after: 0em;
 	}
-	a{
+	
+	a {
 		text-decoration: none;
 	}
 	
@@ -92,29 +116,34 @@
 		position: absolute;
 	}
 	
-	.nav{
+	.nav {
 		position: absolute;
 		top: 934px;
 		left: 543px;
 		width: 900px;
 		height: 54px;
 		z-index: 10000;
-		
 	}
+	
 	.button {
-			display: inline-block;
-			margin-left: 40px;
-			width: 236px;
-			height: 52px;
-			background: url(../static/img/btn-2.png);
-			background-size: 100% 100%;
-			color: white;
-			line-height: 52px;
-			text-align: center;
-			font-size: 18px;
-			font-weight: bold;
-		}
-	.my-active{
+		display: inline-block;
+		margin-left: 15px;
+		width: 190px;
+		height: 52px;
+		background: url(../static/img/btn-2.png);
+		background-size: 100% 100%;
+		color: white;
+		line-height: 52px;
+		text-align: center;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	
+	.my-active {
 		background: url(../static/img/btn-1.png);
+	}
+	
+	.my-active-left {
+		left: 110px;
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="chart">
+	<div class="chart" :class="size">
 		<h1>{{title}}</h1>
 		<div :id="id"></div>
 	</div>
@@ -16,6 +16,9 @@
 				type:Object
 			},
 			id:{
+				type:String
+			},
+			size:{
 				type:String
 			}
 		},
@@ -42,5 +45,9 @@
 			width: 400px;
 			height: 220px;
 		}
+	}
+	.big div{
+		width:865px ;
+		height: 675px;
 	}
 </style>

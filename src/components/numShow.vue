@@ -1,7 +1,8 @@
- <template>
+<template>
 	<div v-bind:class="[numShow,size]">
 		<p class="title">{{title}}</p>
 		<div class="cont">
+			<span class="icon"></span>
 			<span class="num">{{num}}</span>
 			<span class="unit">{{unit}}</span>
 		</div>
@@ -16,22 +17,34 @@
 				default: "标题"
 			},
 			num: {
-				type: String,
-				default: "100"
+				type: Number,
+				default: 100
 			},
 			unit: {
 				type: String,
 				default: "单位"
 			},
-			size:{
-				type:String,
-				default:"big"
+			size: {
+				type: String,
+				default: "big"
 			}
 		},
-		data(){
-			return{
-				numShow:'numShow'
+		data() {
+			return {
+				numShow: 'numShow'
 			}
+		},
+		methods:{
+			changeNum(){
+				var that=this
+				setInterval(function(){
+					that.num++
+				},3000)
+			},
+	
+		},
+		mounted(){
+			this.changeNum()
 		}
 	}
 </script>
@@ -50,10 +63,20 @@
 		}
 		.cont {
 			float: right;
+			.icon {
+				display: none;
+				float: left;
+				margin-top: 25px;
+				margin-right: 10px;
+				width: 53px;
+				height: 13px;
+				background: url(../../static/img/icon.png);
+				background-size: 100% 100%;
+			}
 			.num {
 				color: white;
 				font-size: 38px;
-				
+				font-family: NexaBold;
 			}
 			.unit {
 				color: #ffcf4a;
@@ -61,30 +84,38 @@
 			}
 		}
 	}
-	.big{
+	
+	.big {
+		.cont {
+			.icon {
+				display: block;
+			}
+		}
 		padding-top: 10px;
 		width: 425px;
 		height: 125px;
-		
 	}
-	.small{
+	
+	.small {
 		width: 212.5px;
 		height: 92.5px;
-		.cont{
-			.num{
-				font-size:30px;
+		.cont {
+			.num {
+				font-size: 30px;
 			}
 		}
 	}
-	.supBig{
-		.cont{
-			.num{
+	
+	.supBig {
+		.cont {
+			.num {
 				font-size: 40px;
 			}
 		}
 	}
-	.middle{
-		width:425px;
+	
+	.middle {
+		width: 425px;
 		height: 90px;
 	}
 </style>

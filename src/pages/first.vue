@@ -1,14 +1,14 @@
 <template>
 	<div class="first">
 		<div class="left-panel">
-			<num-show v-for="item in leftNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
+				<num-show v-for="item in leftNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
 			<chart :title="chart1.title" :code="chart1.data" :id="chart1.id"></chart>
 
 			<chart :title="chart2.title" :code="chart2.data" :id="chart2.id"></chart>
 		</div>
 		<div class="middle-panel">
 			<num-show v-for="item in midNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
-			<chart :title='chart6.title' :id="chart6.id" :code="chart6.data"></chart>
+			<chart :title='chart6.title' :id="chart6.id" :code="chart6.data" size="big"></chart>
 		</div>
 		<div class="right-panel">
 			<chart :title="chart3.title" :id="chart3.id" :code="chart3.data"></chart>
@@ -33,58 +33,58 @@
 				leftNumList: [{
 					id: 0,
 					title: "联盟成员总数:",
-					num: '1000',
+					num: 2320,
 					unit: "家",
 					size: "big"
 				}, {
 					id: 1,
 					title: "服装:",
-					num: '957',
+					num: 1557,
 					unit: "家",
 					size: "small"
 				}, {
 					id: 2,
 					title: "家纺:",
-					num: '142',
+					num: 280,
 					unit: "家",
 					size: "small"
 				}, {
 					id: 3,
 					title: "内衣:",
-					num: '27',
+					num: 69,
 					unit: "家",
 					size: "small"
 				}, {
 					id: 4,
 					title: "鞋类:",
-					num: '163',
+					num: 414,
 					unit: "家",
 					size: "small"
 				}],
 				midNumList: [{
 					id: 0,
 					title: '网器在线数：',
-					num: '155561',
+					num: 155561,
 					unit: "台",
 					size: "big"
 				}, {
 					id: 1,
 					title: '人机交互数：',
-					num: '1698543',
+					num: 1698543,
 					unit: "次",
 					size: "big"
 				}],
 				chart1: {
 					id: 'chart1',
-					title: '网器类别占比:',
+					title: '智慧家电类别占比:',
 					data: {
 						tooltip: {},
 						series: [{
 							type: 'pie',
-							radius: '90%',
+							radius: '70%',
 							center: ['50%', '50%'],
 							data: [{
-									value: 335,
+									value: 84,
 									name: '洗衣机',
 									itemStyle: {
 										normal: {
@@ -94,7 +94,7 @@
 									}
 								},
 								{
-									value: 310,
+									value: 6,
 									name: '试衣镜',
 									itemStyle: {
 										normal: {
@@ -104,7 +104,7 @@
 									}
 								},
 								{
-									value: 274,
+									value: 7,
 									name: '儿童衣柜',
 									itemStyle: {
 										normal: {
@@ -114,7 +114,7 @@
 									}
 								},
 								{
-									value: 235,
+									value: 3,
 									name: '衣物护理柜',
 									itemStyle: {
 										normal: {
@@ -131,6 +131,14 @@
 								normal: {
 									textStyle: {
 										color: 'rgba(31, 154, 255, 1)'
+									},
+									formatter:function(data){
+										return data.name+'\n{yellow|'+data.percent+'%}'
+									},
+									rich:{
+										yellow:{
+											color:'yellow'
+										}
 									}
 								}
 							},
@@ -150,7 +158,7 @@
 				},
 				chart2: {
 					id: 'chart2',
-					title: '品类用户分析:',
+					title: '品类用户分析TOP:',
 					data: {
 						title: {
 							subtext: '单位：万/人',
@@ -159,7 +167,7 @@
 							}
 						},
 						xAxis: {
-							data: ['衬衣', '西服', '内裤', '内衣', '男鞋', '女鞋', '被套', '床单'],
+							data: ['T恤', '连衣裙', '裤子', '衬衣', '西装'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -197,8 +205,8 @@
 									}
 								},
 								barGap: '-100%',
-								barCategoryGap: '40%',
-								data: [500, 500, 500, 500, 500, 500, 500, 500],
+								barCategoryGap: '60%',
+								data: [120, 120, 120, 120, 120],
 								animation: false
 							},
 							{
@@ -222,17 +230,17 @@
 										)
 									}
 								},
-								data: [320, 282, 391, 334, 390, 430, 310, 123]
+								data: [110, 90, 60, 55, 29]
 							}
 						]
 					}
 				},
 				chart3: {
 					id: 'chart3',
-					title: '网器使用频率 / 周:',
+					title: '智慧家电使用频率 / 周:',
 					data: {
 						title: {
-							subtext: '单位：万/人',
+							subtext: '单位：万/次',
 							subtextStyle: {
 								color: '#1f9aff'
 							},
@@ -288,15 +296,15 @@
 				},
 				chart4: {
 					id: 'chart4',
-					title: '网器使用模式:',
+					title: '智慧家电网器使用模式:',
 					data: {
 						tooltip: {},
 						series: [{
 							type: 'pie',
-							radius: '90%',
+							radius: '80%',
 							center: ['60%', '50%'],
 							data: [{
-									value: 335,
+									value: 70,
 									name: '洗衣模式',
 									itemStyle: {
 										normal: {
@@ -306,7 +314,7 @@
 									}
 								},
 								{
-									value: 310,
+									value: 9,
 									name: '穿搭模式',
 									itemStyle: {
 										normal: {
@@ -316,7 +324,7 @@
 									}
 								},
 								{
-									value: 274,
+									value: 10,
 									name: '护理模式',
 									itemStyle: {
 										normal: {
@@ -326,8 +334,8 @@
 									}
 								},
 								{
-									value: 235,
-									name: '衣橱模式',
+									value: 3,
+									name: '杀菌模式',
 									itemStyle: {
 										normal: {
 											color: '#716cea',
@@ -336,8 +344,8 @@
 									}
 								},
 								{
-									value: 235,
-									name: '其他',
+									value: 8,
+									name: '烘干',
 									itemStyle: {
 										normal: {
 											color: '#716cea',
@@ -353,6 +361,14 @@
 								normal: {
 									textStyle: {
 										color: 'rgba(31, 154, 255, 1)'
+									},
+									formatter:function(data){
+										return data.name+'\n{yellow|'+data.percent+'%}'
+									},
+									rich:{
+										yellow:{
+											color:'yellow'
+										}
 									}
 								}
 							},
@@ -372,7 +388,7 @@
 				},
 				chart5: {
 					id: 'chart5',
-					title: '网器使用时长分布:',
+					title: '智能洗衣机时长分布:',
 					data: {
 						title: {
 							subtext: '单位：万/次',
@@ -381,12 +397,16 @@
 							},
 							right: 0
 						},
+						grid:{
+							bottom:20
+						},
 						xAxis: {
-							data: ['10', '20', '30', '60', '80', '120', '150'],
+							data: ['脱水', '快洗', '漂洗', '空气洗', '混合', '筒自洁', '单烘干'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
-								}
+								},
+								interval:0
 							},
 							axisTick: {
 								show: false
@@ -420,8 +440,8 @@
 									}
 								},
 								barGap: '-100%',
-								barCategoryGap: '40%',
-								data: [500, 500, 500, 500, 500, 500, 500],
+								barCategoryGap: '60%',
+								data: [140, 140, 140, 140, 140, 140, 140],
 								animation: false
 							},
 							{
@@ -441,21 +461,47 @@
 										)
 									}
 								},
-								data: [320, 282, 391, 334, 390, 430, 310]
+								data: [62, 115, 70, 55, 75, 58, 32]
 							}
 						]
 					}
 				},
-				chart6: {
-					id: 'worldChart', 	
+				chart6:{
+					id: 'worldChart',
 					title: '',
 					data: {
 						tooltip: {
-							trigger: 'item'
+							trigger: 'item',
+							backgroundColor:'rgba(8,92,164,0.9)',
+							padding:10,
+							formatter:function(params){
+								console.log(this)
+								var _date;
+								var _year=new Date().getFullYear()
+								var _month=new Date().getMonth()+1
+								var _day=new Date().getDate()
+								_date=_year+'/'+_month+'/'+_day
+								var _html;
+								var _head='<h3>'+params['name']+' ：'+_date+'</h3>';
+								var _content='<p>'+params['seriesName']+' ： '+params['value']+' 台</p>';
+
+								_html=_head+_content
+								return  _html;
+								
+							}
 						},
-						
-						
-						
+						visualMap: {
+							show:false,
+							min: 0,
+							max: 2500,
+							left: 'left',
+							top: 'bottom',
+							text: ['高', '低'],
+							calculable: true,
+							inRange:{
+								color:['#15387c','#2a4ed4','#3862ff']
+							}
+						},
 						roamController: {
 							show: true,
 							x: 'right',
@@ -464,14 +510,170 @@
 							}
 						},
 						series: [{
-							name: 'iphoneX',
+							name: '网器在线数',
 							type: 'map',
 							mapType: 'china',
 							roam: false,
 							itemStyle: {
 								normal: {
+									areaColor: 'rgba(23,63,128,0.5)',
+									label: {
+										show: false
+									}
+								},
+								emphasis: {
 									label: {
 										show: true
+									}
+								}
+							},
+							data: [{
+									name: '北京',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '天津',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '上海',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '重庆',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '河北',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '河南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '云南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '辽宁',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '黑龙江',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '湖南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '安徽',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '山东',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '新疆',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '江苏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '浙江',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '江西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '湖北',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '广西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '甘肃',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '山西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '内蒙古',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '陕西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '吉林',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '福建',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '贵州',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '广东',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '青海',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '西藏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '四川',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '宁夏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '海南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '台湾',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '香港',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '澳门',
+									value: Math.round(Math.random() * 1000)
+								}
+							]
+						},{
+							name: '网器在线数2',
+							type: 'map',
+							mapType: 'china',
+							roam: false,
+							itemStyle: {
+								normal: {
+									areaColor: 'rgba(23,63,128,0.5)',
+									label: {
+										show: false
 									}
 								},
 								emphasis: {
@@ -651,7 +853,10 @@
 			height: 888px;
 			position: absolute;
 			top: 135px;
-			right: 45px;
+			right: 15px;
+			.chart:nth-of-type(2){
+				margin-top: 30px;
+			}
 		}
 	}
 </style>

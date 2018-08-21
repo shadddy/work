@@ -7,6 +7,7 @@
 		</div>
 		<div class="middle-panel">
 			<num-show v-for="item in midNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
+			<chart :title='chart6.title' :id="chart6.id" :code="chart6.data" size="big"></chart>
 		</div>
 		<div class="right-panel">
 			<chart :title="chart3.title" :id="chart3.id" :code="chart3.data"></chart>
@@ -30,47 +31,47 @@
 				leftNumList: [{
 					id: 0,
 					title: "全国门店数:",
-					num: '264',
+					num: 31962,
 					unit: '家',
 					size: 'big'
 				}, {
 					id: 1,
 					title: '服务用户数:',
-					num: '46465',
+					num: 376034,
 					unit: '家 ',
 					size: 'middle'
 				}, {
 					id: 2,
 					title: '服务人次/天:',
-					num: '6524',
+					num: 43981,
 					unit: '次',
 					size: 'middle'
 				}],
 				midNumList: [{
 					id: 0,
-					title: '门店网器在线数：',
-					num: '155561',
+					title: '门店智慧家电在线数：',
+					num: 155561,
 					unit: "台",
 					size: "big"
 				}, {
 					id: 1,
 					title: '人机交互数：',
-					num: '1698543',
+					num: 1698543,
 					unit: "次",
 					size: "big"
 				}],
 				chart1: {
 					id: 'chart1',
-					title: '服务品类分析:',
+					title: '服装服务品类分析:',
 					data: {
 						tooltip: {},
 						series: [{
 							type: 'pie',
-							radius: '90%',
+							radius: '80%',
 							center: ['50%', '50%'],
 							data: [{
-									value: 335,
-									name: '童装',
+									value: 20,
+									name: '西服',
 									itemStyle: {
 										normal: {
 											color: '#3862ff',
@@ -79,8 +80,8 @@
 									}
 								},
 								{
-									value: 310,
-									name: '外套',
+									value: 17,
+									name: '礼服',
 									itemStyle: {
 										normal: {
 											color: '#2a4ed4',
@@ -89,8 +90,8 @@
 									}
 								},
 								{
-									value: 274,
-									name: '裙子',
+									value: 40,
+									name: '丝绸',
 									itemStyle: {
 										normal: {
 											color: '#272bdd',
@@ -99,8 +100,8 @@
 									}
 								},
 								{
-									value: 235,
-									name: '衬衫',
+									value: 16,
+									name: '真丝',
 									itemStyle: {
 										normal: {
 											color: '#716cea',
@@ -109,18 +110,8 @@
 									}
 								},
 								{
-									value: 200,
-									name: '裤子',
-									itemStyle: {
-										normal: {
-											color: '#716cea',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 175,
-									name: '内衣',
+									value: 7,
+									name: '其他',
 									itemStyle: {
 										normal: {
 											color: '#716cea',
@@ -136,6 +127,14 @@
 								normal: {
 									textStyle: {
 										color: 'rgba(31, 154, 255, 1)'
+									},
+									formatter: function(data) {
+										return data.name + '\n{yellow|' + data.percent + '%}'
+									},
+									rich: {
+										yellow: {
+											color: 'yellow'
+										}
 									}
 								}
 							},
@@ -164,11 +163,12 @@
 							}
 						},
 						xAxis: {
-							data: ['185', '170', '175', '180', '185', '其他'],
+							data: ['110', '115-150', '155-160', '165', '170', '175', '180', '180以上'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
-								}
+								},
+								interval: 0
 							},
 							axisTick: {
 								show: false
@@ -189,7 +189,12 @@
 								textStyle: {
 									color: '#1f9aff'
 								}
-							}
+							},
+							splitLine: {
+								lineStyle: {
+									color: '#15406f'
+								}
+							},
 						},
 						dataZoom: [{
 							type: 'inside'
@@ -203,7 +208,7 @@
 								},
 								barGap: '-100%',
 								barCategoryGap: '40%',
-								data: [500, 500, 500, 500, 500, 500],
+								data: [200, 200, 200, 200, 200, 200, 200, 200],
 								animation: false
 							},
 							{
@@ -227,190 +232,24 @@
 										)
 									}
 								},
-								data: [320, 282, 391, 334, 390, 430]
+								data: [80, 100, 120, 180, 190, 160, 135, 85]
 							}
 						]
 					}
 				},
 				chart3: {
 					id: 'chart3',
-					title: '儿童生长曲线:',
+					title: '库存颜色分析:',
 					data: {
 						title: {
-							subtext: '单位：万/人',
+							subtext: '单位：万/件',
 							subtextStyle: {
 								color: '#1f9aff'
 							},
 							right: 0
 						},
 						xAxis: {
-							type: 'category',
-							boundaryGap: false,
-							data: ['1', '2', '3', '4', '5', '6', '7'],
-							axisLabel: {
-								textStyle: {
-									color: '#1f9aff'
-								}
-							},
-							axisLine: {
-								show: false
-							},
-						},
-						yAxis: {
-							type: 'value',
-							axisLabel: {
-								show: true,
-								textStyle:{
-									color:'#1f9aff'
-								}
-							},
-
-						},
-						series: [{
-							symbol: "none",
-							data: [820, 932, 901, 934, 1290, 1330, 1320],
-							type: 'line',
-							areaStyle: {
-								normal: {
-									color: new this.$echarts.graphic.LinearGradient(
-										0, 0, 0, 1, [{
-												offset: 0,
-												color: 'rgba(233,167,48,0.8)'
-											},
-											{
-												offset: 1,
-												color: 'rgba(233,167,48,0.1)'
-											}
-										]
-									)
-								}
-							},
-							lineStyle: {
-								normal: {
-									color: '#fb9f1f'
-								}
-							}
-						}]
-					}
-
-				},
-				chart4: {
-					id: 'chart4',
-					title: '门店使用模式:',
-					data: {
-						tooltip: {},
-						series: [{
-							type: 'pie',
-							radius: '90%',
-							center: ['60%', '50%'],
-							data: [{
-									value: 335,
-									name: '速洗/快速洗',
-									itemStyle: {
-										normal: {
-											color: '#3862ff',
-											shadowBlur: 30,
-										}
-									}
-								},
-								{
-									value: 310,
-									name: '单脱水',
-									itemStyle: {
-										normal: {
-											color: '#2a4ed4',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 274,
-									name: '烘干',
-									itemStyle: {
-										normal: {
-											color: '#272bdd',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 235,
-									name: '杀菌模式',
-									itemStyle: {
-										normal: {
-											color: '#716cea',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 235,
-									name: '混合',
-									itemStyle: {
-										normal: {
-											color: '#716cea',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 235,
-									name: '单漂洗',
-									itemStyle: {
-										normal: {
-											color: '#716cea',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 235,
-									name: '其他',
-									itemStyle: {
-										normal: {
-											color: '#716cea',
-											shadowBlur: 30
-										}
-									}
-								}
-							].sort(function(a, b) {
-								return a.value - b.value;
-							}),
-							roseType: 'radius',
-							label: {
-								normal: {
-									textStyle: {
-										color: 'rgba(31, 154, 255, 1)'
-									}
-								}
-							},
-							labelLine: {
-								normal: {
-									lineStyle: {
-										color: 'rgba(75, 227, 255, 1)'
-									},
-									smooth: 0.2,
-									length: 10,
-									length2: 20
-								}
-							},
-						}]
-
-					}
-				},
-				chart5: {
-					id: 'chart5',
-					title: '材质分析:',
-					data: {
-						title: {
-							subtext: '单位：万/次',
-							subtextStyle: {
-								color: '#1f9aff'
-							},
-							right: 0
-						},
-						xAxis: {
-							data: ['棉麻', '涤纶', '牛仔', '纯棉', '皮革', '丝绸', '其他'],
+							data: ['白', '黑', '紫', '绿', '其他'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -435,7 +274,12 @@
 								textStyle: {
 									color: '#1f9aff'
 								}
-							}
+							},
+							splitLine: {
+								lineStyle: {
+									color: '#15406f'
+								}
+							},
 						},
 						dataZoom: [{
 							type: 'inside'
@@ -448,8 +292,8 @@
 									}
 								},
 								barGap: '-100%',
-								barCategoryGap: '40%',
-								data: [500, 500, 500, 500, 500, 500, 500],
+								barCategoryGap: '60%',
+								data: [140, 140, 140, 140, 140],
 								animation: false
 							},
 							{
@@ -469,9 +313,528 @@
 										)
 									}
 								},
-								data: [320, 282, 391, 334, 390, 430, 310]
+								data: [130, 105, 50, 25, 15]
 							}
 						]
+					}
+				},
+				chart4: {
+					id: 'chart4',
+					title: '库存尺码分析:',
+					data: {
+						title: {
+							subtext: '单位：万/件',
+							subtextStyle: {
+								color: '#1f9aff'
+							},
+							right: 0
+						},
+						xAxis: {
+							data: ['110', '115-150', '155-160', '165', '170', '175', '180', '180以上'],
+							axisLabel: {
+								textStyle: {
+									color: '#1f9aff'
+								},
+								interval: 0
+							},
+							axisTick: {
+								show: false
+							},
+							axisLine: {
+								show: false
+							},
+							z: 10
+						},
+						yAxis: {
+							axisLine: {
+								show: false
+							},
+							axisTick: {
+								show: false
+							},
+							axisLabel: {
+								textStyle: {
+									color: '#1f9aff'
+								}
+							},
+							splitLine: {
+								lineStyle: {
+									color: '#15406f'
+								}
+							},
+						},
+						dataZoom: [{
+							type: 'inside'
+						}],
+						series: [{ // For shadow
+								type: 'bar',
+								itemStyle: {
+									normal: {
+										color: 'rgba(0,0,0,0.05)'
+									}
+								},
+								barGap: '-100%',
+								barCategoryGap: '60%',
+								data: [200, 200, 200, 200, 200, 200, 200, 200],
+								animation: false
+							},
+							{
+								type: 'bar',
+								itemStyle: {
+									normal: {
+										color: new this.$echarts.graphic.LinearGradient(
+											0, 0, 0, 1, [{
+													offset: 0,
+													color: '#08a4dd'
+												},
+												{
+													offset: 1,
+													color: '#1b51ce'
+												}
+											]
+										)
+									}
+								},
+								data: [80, 100, 120, 180, 190, 160, 135, 85]
+							}
+						]
+					}
+				},
+				chart5: {
+					id: 'chart5',
+					title: '试穿品类分析:',
+					data: {
+						title: {
+							subtext: '单位：万/次',
+							subtextStyle: {
+								color: '#1f9aff'
+							},
+							right: 0
+						},
+						xAxis: {
+							data: ['连衣裙', '衬衫', '短裤', 'T恤', '长裤', '其他'],
+							axisLabel: {
+								textStyle: {
+									color: '#1f9aff'
+								}
+							},
+							axisTick: {
+								show: false
+							},
+							axisLine: {
+								show: false
+							},
+							z: 10
+						},
+						yAxis: {
+							axisLine: {
+								show: false
+							},
+							axisTick: {
+								show: false
+							},
+							axisLabel: {
+								textStyle: {
+									color: '#1f9aff'
+								}
+							},
+							splitLine: {
+								lineStyle: {
+									color: '#15406f'
+								}
+							},
+						},
+						dataZoom: [{
+							type: 'inside'
+						}],
+						series: [{ // For shadow
+								type: 'bar',
+								itemStyle: {
+									normal: {
+										color: 'rgba(0,0,0,0.05)'
+									}
+								},
+								barGap: '-100%',
+								barCategoryGap: '60%',
+								data: [140, 140, 140, 140, 140, 140],
+								animation: false
+							},
+							{
+								type: 'bar',
+								itemStyle: {
+									normal: {
+										color: new this.$echarts.graphic.LinearGradient(
+											0, 0, 0, 1, [{
+													offset: 0,
+													color: '#08a4dd'
+												},
+												{
+													offset: 1,
+													color: '#1b51ce'
+												}
+											]
+										)
+									}
+								},
+								data: [130, 60, 50, 28, 25, 15]
+							}
+						]
+					}
+				},
+				chart6: {
+					id: 'worldChart',
+					title: '',
+					data: {
+						tooltip: {
+							trigger: 'item',
+							backgroundColor: 'rgba(8,92,164,0.9)',
+							padding: 10,
+							formatter: function(params) {
+								console.log(this)
+								var _date;
+								var _year = new Date().getFullYear()
+								var _month = new Date().getMonth() + 1
+								var _day = new Date().getDate()
+								_date = _year + '/' + _month + '/' + _day
+								var _html;
+								var _head = '<h3>' + params['name'] + ' ：' + _date + '</h3>';
+								var _content = '<p>' + params['seriesName'] + ' ： ' + params['value'] + ' 台</p>';
+
+								_html = _head + _content
+								return _html;
+
+							}
+						},
+						visualMap: {
+							show: false,
+							min: 0,
+							max: 2500,
+							left: 'left',
+							top: 'bottom',
+							text: ['高', '低'],
+							calculable: true,
+							inRange: {
+								color: ['#15387c', '#2a4ed4', '#3862ff']
+							}
+						},
+						roamController: {
+							show: true,
+							x: 'right',
+							mapTypeControl: {
+								'china': true
+							}
+						},
+						series: [{
+							name: '网器在线数',
+							type: 'map',
+							mapType: 'china',
+							roam: false,
+							itemStyle: {
+								normal: {
+									areaColor: 'rgba(23,63,128,0.5)',
+									label: {
+										show: false
+									}
+								},
+								emphasis: {
+									label: {
+										show: true
+									}
+								}
+							},
+							data: [{
+									name: '北京',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '天津',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '上海',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '重庆',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '河北',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '河南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '云南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '辽宁',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '黑龙江',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '湖南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '安徽',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '山东',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '新疆',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '江苏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '浙江',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '江西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '湖北',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '广西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '甘肃',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '山西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '内蒙古',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '陕西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '吉林',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '福建',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '贵州',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '广东',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '青海',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '西藏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '四川',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '宁夏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '海南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '台湾',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '香港',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '澳门',
+									value: Math.round(Math.random() * 1000)
+								}
+							]
+						}, {
+							name: '网器在线数2',
+							type: 'map',
+							mapType: 'china',
+							roam: false,
+							itemStyle: {
+								normal: {
+									areaColor: 'rgba(23,63,128,0.5)',
+									label: {
+										show: false
+									}
+								},
+								emphasis: {
+									label: {
+										show: true
+									}
+								}
+							},
+							data: [{
+									name: '北京',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '天津',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '上海',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '重庆',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '河北',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '河南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '云南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '辽宁',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '黑龙江',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '湖南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '安徽',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '山东',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '新疆',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '江苏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '浙江',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '江西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '湖北',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '广西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '甘肃',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '山西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '内蒙古',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '陕西',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '吉林',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '福建',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '贵州',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '广东',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '青海',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '西藏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '四川',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '宁夏',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '海南',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '台湾',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '香港',
+									value: Math.round(Math.random() * 1000)
+								},
+								{
+									name: '澳门',
+									value: Math.round(Math.random() * 1000)
+								}
+							]
+						}]
 					}
 				}
 			}
@@ -491,6 +854,13 @@
 			top: 135px;
 			width: 425px;
 			height: 885px;
+			.numShow {
+				.cont {
+					.num {
+						font-size: 30px;
+					}
+				}
+			}
 		}
 		.middle-panel {
 			width: 900px;
