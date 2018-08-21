@@ -1,8 +1,8 @@
 <template>
 	<div class="forth">
 		<div class="left_panel">
-			<num-show num='3151' title="服装设计领域设计师数量：" unit="人"></num-show>
-			<chart :title="chart1.title" :code="chart1.data" :id="chart1.id" size="big"></chart>
+			<num-show :num="num" title="服装设计领域设计师数量：" unit="人" :numChange="numChange" :numRange='numRange'></num-show>
+			<chart :title="chart1.title" :code="chart1.data" :id="chart1.id" size="big" ></chart>
 		</div>
 		<div class="right_panel">
 			<chart2 :title="chart2.title" :code="chart2.data" :id="chart2.id"></chart2>
@@ -30,6 +30,9 @@
 		},
 		data() {
 			return {
+				numRange:[0,2],
+				num:3151,
+				numChange:true,
 				chart1: {
 					id: 'worldChart',
 					title: '',
@@ -39,7 +42,6 @@
 							backgroundColor: 'rgba(8,92,164,0.9)',
 							padding: 10,
 							formatter: function(params) {
-								console.log(this)
 								var _date;
 								var _year = new Date().getFullYear()
 								var _month = new Date().getMonth() + 1

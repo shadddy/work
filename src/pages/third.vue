@@ -7,7 +7,7 @@
 			<chart :title="chart0.title" :code="chart0.data" :id="chart0.id"></chart>
 		</div>
 		<div class="middle-panel">
-			<num-show v-for="item in midNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
+			<num-show v-for="item in midNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id" numChange="true" :numRange="item.numRange"></num-show>
 			<chart :title="chart6.title" :code="chart6.data" :id="chart6.id" size="big"></chart>
 
 		</div>
@@ -34,13 +34,15 @@
 					title: '智慧家庭数：',
 					num: 406576,
 					unit: "家",
-					size: "big"
+					size: "big",
+					numRange:[3,3]
 				}, {
 					id: 1,
 					title: '洗护服务服装重量：',
 					num: 4328,
 					unit: "KG",
-					size: "big"
+					size: "big",
+					numRange:[0,2]
 				}],
 				chart1: {
 					id: 'chart1',

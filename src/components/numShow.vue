@@ -27,6 +27,17 @@
 			size: {
 				type: String,
 				default: "big"
+			},
+			numChange:{
+				type:Boolean,
+				default:false
+			},
+			numRange:{
+				type:Array
+			},
+			random:{
+				type:Boolean,
+				default:false
 			}
 		},
 		data() {
@@ -38,13 +49,32 @@
 			changeNum(){
 				var that=this
 				setInterval(function(){
-					that.num++
-				},3000)
+					that.num+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+				},10000)
 			},
+			randomChange(){
+				var that=this
+				var _ran=true
+				setInterval(function(){
+					if(_ran){
+						_ran=false
+						that.num+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+					}else{
+						_ran=true
+						that.num-=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+					}
+				},10000)
+			}
 	
 		},
 		mounted(){
-			this.changeNum()
+			if(this.numChange){
+				if(this.random){
+					this.randomChange()
+				}else{
+					this.changeNum()
+				}
+			}
 		}
 	}
 </script>

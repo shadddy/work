@@ -6,7 +6,7 @@
 			<chart :title="chart2.title" :code="chart2.data" :id="chart2.id"></chart>
 		</div>
 		<div class="middle-panel">
-			<num-show v-for="item in midNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
+			<num-show v-for="item in midNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id" numChange="true" :numRange="item.numRange" :random="item.random"></num-show>
 			<chart :title='chart6.title' :id="chart6.id" :code="chart6.data" size="big"></chart>
 		</div>
 		<div class="right-panel">
@@ -52,13 +52,17 @@
 					title: '门店智慧家电在线数：',
 					num: 155561,
 					unit: "台",
-					size: "big"
+					size: "big",
+					numRange:[0,5],
+					random:true
 				}, {
 					id: 1,
 					title: '人机交互数：',
 					num: 1698543,
 					unit: "次",
-					size: "big"
+					size: "big",
+					numRange:[5,5],
+					random:false
 				}],
 				chart1: {
 					id: 'chart1',
