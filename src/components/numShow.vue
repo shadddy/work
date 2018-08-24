@@ -1,16 +1,17 @@
+
 <template>
 	<div v-bind:class="[numShow,size]">
 		<p class="title">{{title}}</p>
 		<div class="cont">
 			<span class="icon"></span>
-			<span class="num">{{num}}</span>
+			<span class="num">{{myNum|formatter}}</span>
 			<span class="unit">{{unit}}</span>
 		</div>
 	</div>
 </template>
-
 <script>
 	export default {
+		name:'numShow1',
 		props: {
 			title: {
 				type: String,
@@ -42,14 +43,15 @@
 		},
 		data() {
 			return {
-				numShow: 'numShow'
+				numShow: 'numShow',
+				myNum:this.num
 			}
 		},
 		methods:{
 			changeNum(){
 				var that=this
 				setInterval(function(){
-					that.num+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+					that.myNum+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
 				},10000)
 			},
 			randomChange(){
@@ -58,12 +60,25 @@
 				setInterval(function(){
 					if(_ran){
 						_ran=false
-						that.num+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+						that.myNum+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
 					}else{
 						_ran=true
-						that.num-=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+						that.myNum-=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
 					}
 				},10000)
+			},
+			formatter(num){
+				var many=num.length
+				var numAry=(''+num).split('');
+				var spanindex=0;
+				for(var i=many-1;i>0;i--){
+					spanindex++
+					if(spanindex==3){
+						numAry.splice(i,0,',')
+						spanindex=0
+					}
+				}
+				return numAry.join('')
 			}
 	
 		},
@@ -75,6 +90,22 @@
 					this.changeNum()
 				}
 			}
+		},
+		filters:{
+			formatter:function(value){
+				if(!value) return
+				var many=value.toString().length
+				var numAry=(''+value).split('');
+				var spanindex=0;
+				for(var i=many-1;i>0;i--){
+					spanindex++
+					if(spanindex==3){
+						numAry.splice(i,0,',')
+						spanindex=0
+					}
+				}
+				return numAry.join('')
+ 			}
 		}
 	}
 </script>
@@ -139,13 +170,23 @@
 	.supBig {
 		.cont {
 			.num {
-				font-size: 40px;
+				font-size: 46px;
+			}
+			.icon{
+				display: block;
 			}
 		}
+		width: 425px;
+		height: 125px;
 	}
 	
 	.middle {
 		width: 425px;
 		height: 90px;
+		.cont{
+			.num{
+				font-size:30px;
+			}
+		}
 	}
 </style>

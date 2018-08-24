@@ -18,7 +18,7 @@
 				curPage: 0,
 				navList: [{
 					id: 0,
-					name: "智慧家电大数据",
+					name: "智能家电大数据",
 					to: {
 						path: '/'
 					},
@@ -30,7 +30,7 @@
 					},
 				}, {
 					id: 2,
-					name: "智慧服装大数据 ",
+					name: "衣联服装大数据 ",
 					to: {
 						path: 'third'
 					},
@@ -40,16 +40,29 @@
 					to: {
 						path: 'forth'
 					},
-				}]
+				}],
+				rootList:["/","/second","/third","/forth"]
 			}
 		},
 		methods: {
 			changePage: function(index) {
 				this.curPage = index
-				console.log(this.curPage)
+			},
+			ownChange:function(){
+				var that=this
+				setInterval(function(){
+					that.curPage++
+					
+					if(that.curPage>3){
+						that.curPage=0
+					}
+					that.$router.push(that.rootList[that.curPage])
+					console.log(that.curPage)
+				},20000)
 			}
 		},
 		mounted() {
+//			this.ownChange()
 			var w = window.innerWidth;
 			var h = window.innerHeight;
 			var origeW = 1920;
