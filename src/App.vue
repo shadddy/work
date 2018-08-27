@@ -11,6 +11,7 @@
 </template>
 
 <script>
+	
 	export default {
 		name: 'App',
 		data() {
@@ -62,7 +63,7 @@
 			}
 		},
 		mounted() {
-//			this.ownChange()
+			this.ownChange()	
 			var w = window.innerWidth;
 			var h = window.innerHeight;
 			var origeW = 1920;
@@ -96,15 +97,25 @@
 	
 	html,
 	body {
+		/*background: black;*/
 		width: 100%;
 		height: 100%;
-		background: black;
 		margin: 0;
 		padding: 0;
 		position: relative;
 		overflow: hidden;
 	}
-	
+	html{
+		background: url(../static/img/bg4.jpg) no-repeat;
+		background-position-y: -200px;
+		background-size: 100% 100%;
+		padding-bottom: 200px;
+		padding-top: 50px;
+	}
+	body{
+	transform: scaleY(0.75);
+	transform-origin: top;
+	}
 	div {
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -127,6 +138,7 @@
 		height: 1080px;
 		transform-origin: center;
 		position: absolute;
+		transform: scale(0.8);
 	}
 	
 	.nav {

@@ -1,4 +1,3 @@
-
 <template>
 	<div v-bind:class="[numShow,size]">
 		<p class="title">{{title}}</p>
@@ -11,7 +10,7 @@
 </template>
 <script>
 	export default {
-		name:'numShow1',
+		name: 'numShow1',
 		props: {
 			title: {
 				type: String,
@@ -29,83 +28,87 @@
 				type: String,
 				default: "big"
 			},
-			numChange:{
-				type:Boolean,
-				default:false
+			numChange: {
+				type: Boolean,
+				default: false
 			},
-			numRange:{
-				type:Array
+			numRange: {
+				type: Array
 			},
-			random:{
-				type:Boolean,
-				default:false
+			random: {
+				type: Boolean,
+				default: false
+			},
+			inttime:{
+				type:Number,
+				default:10000
 			}
 		},
 		data() {
 			return {
 				numShow: 'numShow',
-				myNum:this.num
+				myNum: this.num
 			}
 		},
-		methods:{
-			changeNum(){
-				var that=this
-				setInterval(function(){
-					that.myNum+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
-				},10000)
+		methods: {
+			changeNum() {
+				var that = this
+				setInterval(function() {
+					that.myNum += that.numRange[0] + Math.round(Math.random() * that.numRange[1])
+				}, that.inttime)
 			},
-			randomChange(){
-				var that=this
-				var _ran=true
-				setInterval(function(){
-					if(_ran){
-						_ran=false
-						that.myNum+=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
-					}else{
-						_ran=true
-						that.myNum-=that.numRange[0]+Math.round(Math.random()*that.numRange[1])
+			randomChange() {
+				var that = this
+				var _ran = true
+				setInterval(function() {
+					if(_ran) {
+						_ran = false
+						that.myNum += that.numRange[0] + Math.round(Math.random() * that.numRange[1])
+					} else {
+						_ran = true
+						that.myNum -= that.numRange[0] + Math.round(Math.random() * that.numRange[1])
 					}
-				},10000)
+				}, that.inttime)
 			},
-			formatter(num){
-				var many=num.length
-				var numAry=(''+num).split('');
-				var spanindex=0;
-				for(var i=many-1;i>0;i--){
+			formatter(num) {
+				var many = num.length
+				var numAry = ('' + num).split('');
+				var spanindex = 0;
+				for(var i = many - 1; i > 0; i--) {
 					spanindex++
-					if(spanindex==3){
-						numAry.splice(i,0,',')
-						spanindex=0
+					if(spanindex == 3) {
+						numAry.splice(i, 0, ',')
+						spanindex = 0
 					}
 				}
 				return numAry.join('')
 			}
-	
+
 		},
-		mounted(){
-			if(this.numChange){
-				if(this.random){
+		mounted() {
+			if(this.numChange) {
+				if(this.random) {
 					this.randomChange()
-				}else{
+				} else {
 					this.changeNum()
 				}
 			}
 		},
-		filters:{
-			formatter:function(value){
+		filters: {
+			formatter: function(value) {
 				if(!value) return
-				var many=value.toString().length
-				var numAry=(''+value).split('');
-				var spanindex=0;
-				for(var i=many-1;i>0;i--){
+				var many = value.toString().length
+				var numAry = ('' + value).split('');
+				var spanindex = 0;
+				for(var i = many - 1; i > 0; i--) {
 					spanindex++
-					if(spanindex==3){
-						numAry.splice(i,0,',')
-						spanindex=0
+					if(spanindex == 3) {
+						numAry.splice(i, 0, ',')
+						spanindex = 0
 					}
 				}
 				return numAry.join('')
- 			}
+			}
 		}
 	}
 </script>
@@ -146,6 +149,22 @@
 		}
 	}
 	
+	.supsmall {
+		width: 360px;
+		.cont {
+			.icon {
+				display: block;
+				margin-top: 20px;
+			}
+			.num {
+				font-size: 30px;
+			}
+		}
+	}
+	.supsmall:nth-of-type(2),.supsmall:nth-of-type(3){
+		width: 250px;
+	}
+	
 	.big {
 		.cont {
 			.icon {
@@ -172,7 +191,7 @@
 			.num {
 				font-size: 46px;
 			}
-			.icon{
+			.icon {
 				display: block;
 			}
 		}
@@ -183,9 +202,9 @@
 	.middle {
 		width: 425px;
 		height: 90px;
-		.cont{
-			.num{
-				font-size:30px;
+		.cont {
+			.num {
+				font-size: 30px;
 			}
 		}
 	}

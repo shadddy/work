@@ -32,7 +32,7 @@
 				midNumList: [{
 					id: 0,
 					title: '智慧家庭数：',
-					num: 5241970,
+					num: 5241970 * 2,
 					unit: "家",
 					size: "supBig",
 					numRange: [3, 3],
@@ -40,7 +40,7 @@
 				}, {
 					id: 1,
 					title: '洗护服务服装重量：',
-					num: 2784328,
+					num: 928147667,
 					unit: "KG",
 					size: "supBig",
 					numRange: [0, 2],
@@ -48,15 +48,15 @@
 				}],
 				chart1: {
 					id: 'chart1',
-					title: '家庭洗护色系分析:',
+					title: '家庭洗护色系:',
 					data: {
 						tooltip: {},
 						series: [{
 							type: 'pie',
-							radius: '90%',
+							radius: '80%',
 							center: ['50%', '50%'],
 							data: [{
-									value: 30,
+									value: 15,
 									name: '中间色',
 									itemStyle: {
 										normal: {
@@ -66,7 +66,7 @@
 									}
 								},
 								{
-									value: 26,
+									value: 22,
 									name: '暖色',
 									itemStyle: {
 										normal: {
@@ -76,27 +76,7 @@
 									}
 								},
 								{
-									value: 44,
-									name: '纯色',
-									itemStyle: {
-										normal: {
-											color: '#272bdd',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 44,
-									name: '净色',
-									itemStyle: {
-										normal: {
-											color: '#272bdd',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 44,
+									value: 18,
 									name: '冷色',
 									itemStyle: {
 										normal: {
@@ -106,8 +86,18 @@
 									}
 								},
 								{
-									value: 44,
+									value: 15,
 									name: '杂色',
+									itemStyle: {
+										normal: {
+											color: '#716cea',
+											shadowBlur: 30
+										}
+									}
+								},
+								{
+									value: 17,
+									name: '图案',
 									itemStyle: {
 										normal: {
 											color: '#272bdd',
@@ -116,11 +106,11 @@
 									}
 								},
 								{
-									value: 44,
-									name: '图案',
+									value: 13,
+									name: '其他',
 									itemStyle: {
 										normal: {
-											color: '#272bdd',
+											color: '#716cea',
 											shadowBlur: 30
 										}
 									}
@@ -131,6 +121,7 @@
 
 							label: {
 								normal: {
+									fontSize: this.CONFIG.PIEFONTSIZE,
 									textStyle: {
 										color: 'rgba(31, 154, 255, 1)'
 									},
@@ -160,7 +151,7 @@
 				},
 				chart2: {
 					id: 'chart2',
-					title: '家庭洗护材质分析:',
+					title: '家庭洗护材质:',
 					data: {
 						tooltip: {},
 						title: {
@@ -173,7 +164,7 @@
 							top: '8%'
 						},
 						xAxis: {
-							data: ['毛', '麻', '其他', '棉', '化学纤维', '混纺', '丝'].reverse(),
+							data: ['棉','化纤','混纺', '麻', '毛','其他'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -219,7 +210,7 @@
 								},
 								barGap: '-100%',
 								barCategoryGap: '60%',
-								data: [150, 150, 150, 150, 150],
+								data: [150, 150, 150, 150, 150, 150],
 								animation: false
 							},
 							{
@@ -243,18 +234,17 @@
 										)
 									}
 								},
-								data: [100, 90, 80, 70, 60, 50, 40]
+								data: [120, 110, 70, 65, 40, 30]
 							}
 						]
 					}
 				},
 				chart0: {
 					id: 'chart0',
-					title: '地区洗护频率TOP:',
+					title: '家庭洗护类别:',
 					data: {
 						tooltip: {},
 						title: {
-
 							subtextStyle: {
 								color: '#1f9aff'
 							}
@@ -263,7 +253,7 @@
 							top: '8%'
 						},
 						xAxis: {
-							data: ['上海', '北京', '广东', '浙江', '武汉'],
+							data: ['T恤', '裙子', '裤子', '衬衣', '内衣'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -279,22 +269,23 @@
 						},
 						yAxis: {
 							axisLine: {
-								show: true
+								show: true,
+								color: '#15406f'
 							},
 							axisTick: {
 								show: false
-							},
-							axisLabel: {
-								show: false,
-								textStyle: {
-									color: '#1f9aff'
-								}
 							},
 							splitLine: {
 								lineStyle: {
 									color: '#15406f'
 								}
 							},
+							axisLabel: {
+								show: false,
+								textStyle: {
+									color: '#1f9aff'
+								}
+							}
 						},
 						dataZoom: [{
 							type: 'inside'
@@ -308,7 +299,7 @@
 								},
 								barGap: '-100%',
 								barCategoryGap: '60%',
-								data: [140, 140, 140, 140, 140],
+								data: [120, 120, 120, 120, 120],
 								animation: false
 							},
 							{
@@ -332,25 +323,30 @@
 										)
 									}
 								},
-								data: [100, 80, 60, 40, 20]
+								data: [110, 90, 60, 55, 29]
 							}
 						]
 					}
 				},
 				chart3: {
 					id: 'chart3',
-					title: '家庭洗护品类分析:',
+					title: '家庭洗护品类:',
 					data: {
 						tooltip: {},
 						title: {
-							subtext: '单位：万',
+							subtext: '单位：万件',
 							subtextStyle: {
-								color: '#1f9aff'
+								color: '#1f9aff',
+								
 							},
 							right: 0
 						},
+						grid: {
+							top: '15%',
+							left:'12%'
+						},
 						xAxis: {
-							data: ['正装', '童装', '家纺', '内衣', '运动装', '其他'],
+							data: ['男装', '女装','童装', '配饰','家纺' , '其他' ],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -366,7 +362,10 @@
 						},
 						yAxis: {
 							axisLine: {
-								show: false
+								show: true,
+								lineStyle:{
+									color: '#15406f'
+								}
 							},
 							axisTick: {
 								show: false
@@ -381,6 +380,8 @@
 									color: '#15406f'
 								}
 							},
+							max:20000
+						
 						},
 						dataZoom: [{
 							type: 'inside'
@@ -394,7 +395,7 @@
 								},
 								barGap: '-100%',
 								barCategoryGap: '60%',
-								data: [140, 140, 140, 140, 140, 140],
+							
 								animation: false
 							},
 							{
@@ -414,30 +415,36 @@
 										)
 									}
 								},
-								data: [100, 90, 80, 70, 60, 50]
+								data: [68756457, 135647897,174366576, 50665675, 40665675 , 30665675 ].map(function(item){
+									return Math.round(item/10000)
+								})
 							}
 						]
 					}
 				},
 				chart4: {
 					id: 'chart4',
-					title: '家庭洗护规格分析:',
+					title: '家庭洗护规格:',
 					data: {
 						tooltip: {},
+						grid: {
+							top: '15%',
+							left:'12%'
+						},
 						title: {
-							subtext: '单位：万',
+							subtext: '单位：万件',
 							subtextStyle: {
 								color: '#1f9aff'
 							},
 							right: 0
 						},
 						xAxis: {
-							data: ['110-150', '155', '160', '165', '170', '175','180','180以上'],
+							data: ['150以下', '155', '160', '165', '170', '175', '180', '180以上'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
 								},
-								interval:0
+								interval: 0
 							},
 							axisTick: {
 								show: false
@@ -449,7 +456,10 @@
 						},
 						yAxis: {
 							axisLine: {
-								show: false
+								show: true,
+								lineStyle:{
+									color: '#15406f'
+								}
 							},
 							axisTick: {
 								show: false
@@ -464,6 +474,7 @@
 									color: '#15406f'
 								}
 							},
+							max:20000
 						},
 						dataZoom: [{
 							type: 'inside'
@@ -477,7 +488,7 @@
 								},
 								barGap: '-100%',
 								barCategoryGap: '60%',
-								data: [140, 140, 140, 140, 140, 140],
+				
 								animation: false
 							},
 							{
@@ -497,25 +508,30 @@
 										)
 									}
 								},
-								data: [56, 85, 80, 100, 125, 130,120,50]
+								data: [0.3, 0.09, 0.11, 0.15, 0.14, 0.15, 0.12, 0.08].map(function(item){
+									return Math.round(item*(536844561/10000))
+								})
 							}
 						]
 					}
 				},
 				chart5: {
 					id: 'chart5',
-					title: '家庭洗护人群分析:',
+					title: '家庭洗护人群:',
 					data: {
 						tooltip: {},
+						grid: {
+							top: '15%'
+						},
 						title: {
-							subtext: '单位：万',
+							subtext: '单位：万人',
 							subtextStyle: {
 								color: '#1f9aff'
 							},
 							right: 0
 						},
 						xAxis: {
-							data: ['青年', '青少年', '中年', '老年', '儿童', '其他'],
+							data: ['婴童', '儿童', '青少年','青年', '中年', '老年'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -531,7 +547,10 @@
 						},
 						yAxis: {
 							axisLine: {
-								show: false
+								show: true,
+								lineStyle:{
+									color: '#15406f'
+								}
 							},
 							axisTick: {
 								show: false
@@ -546,6 +565,7 @@
 									color: '#15406f'
 								}
 							},
+							max:3000
 						},
 						dataZoom: [{
 							type: 'inside'
@@ -559,7 +579,6 @@
 								},
 								barGap: '-100%',
 								barCategoryGap: '60%',
-								data: [140, 140, 140, 140, 140, 140],
 								animation: false
 							},
 							{
@@ -579,7 +598,9 @@
 										)
 									}
 								},
-								data: [100, 90, 80, 70, 60, 50]
+								data: [ 0.188, 0.199,0.12,0.21,0.216,0.067].map(function(item){
+									return item*6500
+								})
 							}
 						]
 					}
@@ -650,139 +671,139 @@
 							},
 							data: [{
 									name: '北京',
-									value: 2134,
+									value: 123,
 								},
 								{
 									name: '天津',
-									value: 1222
+									value: 413
 								},
 								{
 									name: '上海',
-									value: 2321
+									value: 762
 								},
 								{
 									name: '重庆',
-									value: 3021
+									value: 209
 								},
 								{
 									name: '河北',
-									value: 5321
+									value: 896
 								},
 								{
 									name: '河南',
-									value: 9001
+									value: 2716
 								},
 								{
 									name: '云南',
-									value: 3475
+									value: 37
 								},
 								{
 									name: '辽宁',
-									value: 5247
+									value: 966
 								},
 								{
 									name: '黑龙江',
-									value: 3557
+									value: 64
 								},
 								{
 									name: '湖南',
-									value: 4585
+									value: 563
 								},
 								{
 									name: '安徽',
-									value: 5754
+									value: 1975
 								},
 								{
 									name: '山东',
-									value: 9014
+									value: 5384
 								},
 								{
 									name: '新疆',
-									value: 3244
+									value: 21
 								},
 								{
 									name: '江苏',
-									value: 7554
+									value: 8449
 								},
 								{
 									name: '浙江',
-									value: 7522
+									value: 6957
 								},
 								{
 									name: '江西',
-									value: 3485
+									value: 2072
 								},
 								{
 									name: '湖北',
-									value: 6575
+									value: 1819
 								},
 								{
 									name: '广西',
-									value: 3457
+									value: 461
 								},
 								{
 									name: '甘肃',
-									value: 2477
+									value: 21
 								},
 								{
 									name: '山西',
-									value: 3542
+									value: 32
 								},
 								{
 									name: '内蒙古',
-									value: 3898
+									value: 53
 								},
 								{
 									name: '陕西',
-									value: 3547
+									value: 37
 								},
 								{
 									name: '吉林',
-									value: 4579
+									value: 450
 								},
 								{
 									name: '福建',
-									value: 2453
+									value: 6952
 								},
 								{
 									name: '贵州',
-									value: 2458
+									value: 123
 								},
 								{
 									name: '广东',
-									value: 8547
+									value: 11751
 								},
 								{
 									name: '青海',
-									value: 2457
-								},
-								{
-									name: '西藏',
-									value: 1245
+									value: 10
 								},
 								{
 									name: '四川',
-									value: 8654
+									value: 327
 								},
 								{
 									name: '宁夏',
-									value: 2453
+									value: 21
+								},
+								{
+									name: '西藏',
+									value: 1
 								},
 								{
 									name: '海南',
-									value: 3024
+									value: 1
 								},
 								{
 									name: '台湾',
-									value: 2045
+									value: 1
 								},
 								{
 									name: '香港',
-									value: 1244
+									value: 1
 								},
 								{
 									name: '澳门',
-									value: 500
+									value: 1
 								}
 							]
 						}]
@@ -826,7 +847,6 @@
 					"宁夏": [106.2, 38.5],
 					"新疆": [87.56, 43.84],
 					"香港": [113.88, 22.55],
-					"新疆": [113.5, 22.2]
 				}
 				var that = this
 				var res = [];
@@ -849,7 +869,7 @@
 	.third {
 		width: 100%;
 		height: 100%;
-		background: url(../../static/img/bg2.jpg) center no-repeat;
+		background: url(../../static/img/bg2.png) center no-repeat;
 		background-size: 100% 100%;
 		overflow: hidden;
 		.left-panel {
@@ -875,6 +895,9 @@
 			position: absolute;
 			top: 135px;
 			right: 15px;
+			.chart:nth-of-type(2) {
+				margin-top: 30px;
+			}
 			.chart:nth-of-type(3) {
 				margin-top: 30px;
 			}

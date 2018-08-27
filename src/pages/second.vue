@@ -1,7 +1,7 @@
 <template>
 	<div class="second">
 		<div class="left-panel">
-			<num-show v-for="item in leftNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id"></num-show>
+			<num-show v-for="item in leftNumList" :num="item.num" :title="item.title" :unit="item.unit" :size="item.size" :key="item.id" :numChange="item.numChange" :numRange="item.numRange" :inttime="item.inttime"></num-show>
 			<chart :title="chart1.title" :code="chart1.data" :id="chart1.id"></chart>
 			<chart :title="chart2.title" :code="chart2.data" :id="chart2.id"></chart>
 		</div>
@@ -30,25 +30,31 @@
 				leftNumList: [{
 					id: 0,
 					title: "全国门店数:",
-					num: 31254,
+					num: 31962,
 					unit: '家',
 					size: 'big'
 				}, {
 					id: 1,
 					title: '服务用户数:',
-					num: 61546848,
+					num: 65871369,
 					unit: '人 ',
-					size: 'middle'
+					size: 'middle',
+					numRange: [5, 6],
+					numChange: true,
+					inttime:3000
 				}, {
 					id: 2,
-					title: '服务人次/天:',
-					num: 439081,
-					unit: '次',
-					size: 'middle'
+					title: '服务人次:',
+					num: 1598100,
+					unit: '次/天',
+					size: 'middle',
+					numRange: [4, 5],
+					numChange: true,
+					inttime:3000
 				}],
 				midNumList: [{
 					id: 0,
-					title: '门店智慧家电在线数：',
+					title: '门店智能家电在线数：',
 					num: 245561,
 					unit: "台",
 					size: "supBig",
@@ -67,7 +73,7 @@
 				}],
 				chart1: {
 					id: 'chart2_1',
-					title: '服装品类分析:',
+					title: '洗护服装品类:',
 					data: {
 						tooltip: {},
 						series: [{
@@ -95,21 +101,11 @@
 									}
 								},
 								{
-									value: 20,
+									value: 25,
 									name: '纯棉被套',
 									itemStyle: {
 										normal: {
 											color: '#272bdd',
-											shadowBlur: 30
-										}
-									}
-								},
-								{
-									value: 5,
-									name: '西服',
-									itemStyle: {
-										normal: {
-											color: '#716cea',
 											shadowBlur: 30
 										}
 									}
@@ -125,7 +121,7 @@
 									}
 								},
 								{
-									value: 3,
+									value: 11,
 									name: '毛绒玩具',
 									itemStyle: {
 										normal: {
@@ -135,7 +131,7 @@
 									}
 								},
 								{
-									value: 2,
+									value: 9,
 									name: '羽绒服',
 									itemStyle: {
 										normal: {
@@ -145,7 +141,7 @@
 									}
 								},
 								{
-									value: 20,
+									value: 5,
 									name: '其他',
 									itemStyle: {
 										normal: {
@@ -160,6 +156,7 @@
 							roseType: false,
 							label: {
 								normal: {
+									fontSize:this.CONFIG.PIEFONTSIZE,
 									textStyle: {
 										color: 'rgba(31, 154, 255, 1)'
 									},
@@ -189,7 +186,7 @@
 				},
 				chart2: {
 					id: 'chart2',
-					title: '尺码分析:',
+					title: '洗护服装规格:',
 					data: {
 						tooltip: {},
 						grid:{
@@ -199,7 +196,7 @@
 							bottom:40
 						},
 						xAxis: {
-							data: ['110', '115-150', '155-160', '165', '170', '175', '180', '180以上'],
+							data: ['150以下', '155', '160', '165', '170', '175', '180', '180以上'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -276,14 +273,14 @@
 				},
 				chart3: {
 					id: 'chart3',
-					title: '品类存销比分析:',
+					title: '品类存销比:',
 					data: {
 						tooltip: {
 							trigger: 'axis'
 						},
 						legend: {
 							icon:'rect',
-							data: ['连衣裙','衬衫','短裤','长裤','T恤','其他'],
+							data: ['裙子','衬衫','短裤','长裤','T恤','其他'],
 							textStyle: {
 								color: 'white'
 							}
@@ -321,40 +318,40 @@
 							max:4
 						},
 						series: [{
-								name: '连衣裙',
+								name: '裙子',
 								type: 'line',
 								stack: '总量1',
-								data: [2.6,2.2,2.1,1.9,1.7,1.4,1.1]
+								data: [2.6,2.2,2.1,1.9,1.7,1.4,1.1].reverse()
 							},
 							{
 								name: '衬衫',
 								type: 'line',
 								stack: '总量2',
-								data: [2.9,2.7,2.4,1.9,2.0,1.7,1.6]
+								data: [2.9,2.7,2.4,1.9,2.0,1.7,1.6].reverse()
 							},
 							{
 								name: '短裤',
 								type: 'line',
 								stack: '总量3',
-								data: [2.0,2.2,1.7,1.9,2.1,2.3,2.0]
+								data: [2.0,2.2,1.7,1.6,1.4,1.4,1.2].reverse()
 							},
 							{
 								name: '长裤',
 								type: 'line',
 								stack: '总量4',
-								data: [0.9,1.4,1.3,1.7,1.7,1.9,2.0]
+								data: [0.9,0.9,0.9,1.0,0.8,0.8,0.6].reverse()
 							},
 							{
 								name: 'T恤',
 								type: 'line',
 								stack: '总量5',
-								data: [1.7,1.7,1.9,2.0,0.9,1.4,1.3]
+								data: [1.7,1.7,1.6,1.5,0.9,1.0,0.9].reverse()
 							},
 							{
 								name: '其他',
 								type: 'line',
 								stack: '总量5',
-								data: [1.3,1.7,1.7,0.9,1.9,2.0,1.4]
+								data: [1.6,1.7,1.7,1.4,1.2,1.0,0.9].reverse()
 							}
 						]
 					}
@@ -362,7 +359,7 @@
 				},
 				chart4: {
 					id: 'chart4',
-					title: '品类库存分析:',
+					title: '品类库存:',
 					data: {
 						color: ['#3862ff', '#2a4ed4  ', '#272bdd ', '#716cea'],
 						tooltip: {
@@ -371,6 +368,15 @@
 								type: 'shadow'
 							}
 						},
+						title:{
+							subtext:'单位:亿元',
+							subtextStyle:{
+								color: '#1f9aff',
+							
+							},
+							right:0,
+							top:14
+						},
 						grid: {
 							left: '3%',
 							right: '4%',
@@ -378,7 +384,7 @@
 							containLabel: true
 						},
 						legend: {
-							data: ['连衣裙','衬衫', '裤类','T恤', '其他'],
+							data: ['裙子','衬衫', '裤类','T恤', '其他'],
 							textStyle: {
 								color: 'white'
 							}
@@ -410,7 +416,7 @@
 							}
 						}],
 						series: [{
-								name: '连衣裙',
+								name: '裙子',
 								type: 'bar',
 								barGap: 0,
 								label: {
@@ -431,7 +437,7 @@
 									},
 								},
 
-								data: [320, 332, 301, 334, 390]
+								data: [320, 302, 298, 274, 265]
 							},
 							{
 								name: '衬衫',
@@ -453,7 +459,7 @@
 										}
 									},
 								},
-								data: [220, 182, 191, 234, 290]
+								data: [220, 182, 171, 164, 160]
 							},
 							{
 								name: '裤类',
@@ -475,7 +481,7 @@
 										}
 									},
 								},
-								data: [150, 232, 201, 154, 190]
+								data: [150, 142, 140, 130, 122]
 							},
 							{
 								name: 'T恤',
@@ -497,7 +503,7 @@
 										}
 									},
 								},
-								data: [98, 77, 101, 99, 40]
+								data: [98, 76, 75, 70, 40]
 							},
 							{
 								name: '其他',
@@ -519,29 +525,22 @@
 										}
 									},
 								},
-								data: [82, 62, 93, 65, 30]
+								data: [82, 62, 63, 65, 30]
 							}
 						]
 					}
 				},
 				chart5: {
 					id: 'chart5',
-					title: '试穿品类分析:',
+					title: '试穿品类:',
 					data: {
 						tooltip: {},
-						title: {
-							subtext: '单位：万次',
-							subtextStyle: {
-								color: '#1f9aff'
-							},
-							right: 0
-						},
 						grid:{
 							top:30,
 							bottom:30
 						},
 						xAxis: {
-							data: ['连衣裙', '衬衫', '短裤', 'T恤', '长裤', '其他'],
+							data: [ '其他','衬衫', '短裤', 'T恤', '长裤','裙子'],
 							axisLabel: {
 								textStyle: {
 									color: '#1f9aff'
@@ -557,12 +556,14 @@
 						},
 						yAxis: {
 							axisLine: {
-								show: false
+								show: true,
+								color: '#1f9aff'
 							},
 							axisTick: {
 								show: false
 							},
 							axisLabel: {
+								show:false,
 								textStyle: {
 									color: '#1f9aff'
 								}
@@ -653,7 +654,7 @@
 							}
 						},
 						series: [{
-							name: '智慧家电绑定数',
+							name: '智能家电在线数',
 							type: 'map',
 							mapType: 'china',
 							roam: false,
@@ -875,7 +876,7 @@
 	.second {
 		width: 100%;
 		height: 100%;
-		background: url(../../static/img/bg.jpg) center no-repeat;
+		background: url(../../static/img/bg.png) center no-repeat;
 		background-size: 100% 100%;
 		.left-panel {
 			position: absolute;

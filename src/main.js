@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import echarts from 'echarts'
 import china from '../static/js/china'
+import _config from '@/config'
 
 Vue.prototype.$echarts = echarts 
-
+Vue.prototype.CONFIG=_config
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
