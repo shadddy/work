@@ -1134,7 +1134,7 @@
 	.forth {
 		width: 100%;
 		height: 100%;
-		background: url(../../static/img/bg3.png) center no-repeat;
+		background: url(../../static/img/bg3.jpg) center no-repeat;
 		background-size: 100% 100%;
 		overflow: hidden;
 		.left_panel {

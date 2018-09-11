@@ -876,7 +876,7 @@
 	.second {
 		width: 100%;
 		height: 100%;
-		background: url(../../static/img/bg.png) center no-repeat;
+		background: url(../../static/img/bg.jpg) center no-repeat;
 		background-size: 100% 100%;
 		.left-panel {
 			position: absolute;

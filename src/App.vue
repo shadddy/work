@@ -97,7 +97,7 @@
 	
 	html,
 	body {
-		/*background: black;*/
+		background: black;
 		width: 100%;
 		height: 100%;
 		margin: 0;
@@ -105,17 +105,17 @@
 		position: relative;
 		overflow: hidden;
 	}
-	html{
+	/*html{
 		background: url(../static/img/bg4.jpg) no-repeat;
 		background-position-y: -200px;
 		background-size: 100% 100%;
 		padding-bottom: 200px;
 		padding-top: 50px;
-	}
-	body{
+	}*/
+	/*body{
 	transform: scaleY(0.75);
 	transform-origin: top;
-	}
+	}*/
 	div {
 		box-sizing: border-box;
 		-moz-box-sizing: border-box;
